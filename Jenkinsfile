@@ -1,4 +1,4 @@
 node {
   checkout scm
-  jobDsl targets: ['jobs/seed-build-qa.groovy', 'jobs/seed-build-beta.groovy'].join('\n')
+  jobDsl targets: ['jobs/seed_build_qa.groovy', 'jobs/seed_build_beta.groovy'].join('\n')
 }
