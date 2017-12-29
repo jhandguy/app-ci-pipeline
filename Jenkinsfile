@@ -2,14 +2,18 @@
 pipeline {
   agent any
 
+  parameters {
+    choice(choices: 'android\ios', description: 'Mobile Platform for which Jobs are seeded', name: 'platform')
+  }
+
   stages {
-    stage('Seed') {
+    stage('Seed Jobs') {
       steps {
         jobDsl targets: ['jobs/*.groovy'].join('\n'),
                removedJobAction: 'DELETE',
                removedViewAction: 'DELETE',
                sandbox: true,
-               additionalParameters: [platform: 'android']
+               additionalParameters: [platform: ${params.platform}]
       }
     }
   }
