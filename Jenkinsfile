@@ -3,7 +3,7 @@ pipeline {
   agent any
 
   parameters {
-    choice(choices: 'android\ios', description: 'Mobile Platform for which Jobs are seeded', name: 'platform')
+    choice(choices: 'android\nios', description: 'Mobile Platform for which Jobs are seeded', name: 'platform')
   }
 
   stages {
