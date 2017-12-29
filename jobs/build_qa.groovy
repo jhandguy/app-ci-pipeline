@@ -1,4 +1,4 @@
-pipelineJob('build-qa') {
+pipelineJob("${platform}-build-qa") {
   description("QA build for platform ${platform}")
 
   definition {

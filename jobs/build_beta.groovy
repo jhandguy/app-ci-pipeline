@@ -1,4 +1,4 @@
-pipelineJob('build-beta') {
+pipelineJob("${platform}-build-beta") {
   description("Beta build for platform ${platform}")
 
   definition {
