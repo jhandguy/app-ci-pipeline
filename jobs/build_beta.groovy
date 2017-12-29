@@ -1,7 +1,7 @@
 pipelineJob('build-beta') {
-  def repo = 'https://github.com/jhandguy/android-ci-pipeline'
+  def repo = "https://github.com/jhandguy/${platform}-ci-pipeline"
 
-  description("Pipeline for $repo")
+  description("Beta build for platform ${platform}")
 
   definition {
     cpsScm {

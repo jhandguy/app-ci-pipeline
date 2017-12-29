@@ -1,4 +1,8 @@
 node {
   checkout scm
-  jobDsl targets: ['jobs/build_qa.groovy', 'jobs/build_beta.groovy'].join('\n')
+  jobDsl targets: ['jobs/*.groovy'].join('\n'),
+         removedJobAction: 'DELETE',
+         removedViewAction: 'DELETE',
+         lookupStrategy: 'SEED_JOB',
+         params: [platform: 'android']
 }
