@@ -1,8 +1,19 @@
-node {
-  checkout scm
-  jobDsl targets: ['jobs/*.groovy'].join('\n'),
-         removedJobAction: 'DELETE',
-         removedViewAction: 'DELETE',
-         lookupStrategy: 'SEED_JOB',
-         additionalParameters: [platform: 'android']
+
+pipeline {
+  agent any
+  triggers {
+    
+  }
+  stages {
+    stage('Seed Jobs') {
+      steps {
+        jobDsl targets: ['jobs/*.groovy'].join('\n'),
+               removedJobAction: 'DELETE',
+               removedViewAction: 'DELETE',
+               lookupStrategy: 'SEED_JOB',
+               sandbox: true,
+               additionalParameters: [platform: 'android']
+      }
+    }
+  }
 }
