@@ -9,7 +9,7 @@ pipeline {
                removedJobAction: 'DELETE',
                removedViewAction: 'DELETE',
                lookupStrategy: 'SEED_JOB',
-               sandbox: false,
+               sandbox: true,
                additionalParameters: [platform: 'android']
       }
     }
