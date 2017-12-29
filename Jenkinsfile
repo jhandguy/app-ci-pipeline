@@ -3,7 +3,7 @@ pipeline {
   agent any
 
   stages {
-    stage('Seed Jobs') {
+    stage('Seed') {
       steps {
         jobDsl targets: ['jobs/*.groovy'].join('\n'),
                removedJobAction: 'DELETE',

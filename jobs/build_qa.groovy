@@ -6,7 +6,7 @@ pipelineJob('build-qa') {
       scm {
         git {
           remote { url("https://github.com/jhandguy/${platform}-ci-pipeline") }
-          branches('master', '**/feature*')
+          branches('master')
           scriptPath('build-qa/Jenkinsfile')
           extensions { }  // required as otherwise it may try to tag the repo, which you may not want
         }
