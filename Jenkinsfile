@@ -13,7 +13,7 @@ pipeline {
                removedJobAction: 'DELETE',
                removedViewAction: 'DELETE',
                sandbox: true,
-               additionalParameters: [platform: ${params.platform}]
+               additionalParameters: [platform: params.platform]
       }
     }
   }
