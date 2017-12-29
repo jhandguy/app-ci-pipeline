@@ -1,9 +1,7 @@
 
 pipeline {
   agent any
-  triggers {
-    
-  }
+  
   stages {
     stage('Seed Jobs') {
       steps {
