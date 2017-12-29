@@ -4,5 +4,5 @@ node {
          removedJobAction: 'DELETE',
          removedViewAction: 'DELETE',
          lookupStrategy: 'SEED_JOB',
-         params: [platform: 'android']
+         additionalParameters: [platform: 'android']
 }
