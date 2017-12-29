@@ -9,7 +9,7 @@ pipelineJob('build-beta') {
         git {
           remote { url(repo) }
           branches('master', '**/feature*')
-          scriptPath('pipelines/build_beta.groovy')
+          scriptPath('build-beta/Jenkinsfile')
           extensions { }  // required as otherwise it may try to tag the repo, which you may not want
         }
 
