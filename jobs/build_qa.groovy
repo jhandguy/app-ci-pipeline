@@ -7,7 +7,7 @@ pipelineJob("${platform}-build-qa") {
         git {
           remote { url("https://github.com/jhandguy/${platform}-ci-pipeline") }
           branches('master', '**/feature*')
-          scriptPath('build-qa/Jenkinsfile')
+          scriptPath('pipelines/build_qa.groovy')
           extensions { }
         }
       }
