@@ -7,7 +7,7 @@ pipeline {
   }
 
   stages {
-    stage("Seed ${params.platform} Jobs") {
+    stage('Seed Jobs') {
       steps {
         jobDsl targets: ['jobs/*.groovy'].join('\n'),
                removedJobAction: 'DELETE',
