@@ -1,8 +1,7 @@
+def platforms = ['android', 'ios']
 
 pipeline {
   agent any
-
-  def platforms = ['android', 'ios']
 
   parameters {
     choice(choices: "cross\n${platforms.join('\n')}", description: 'Mobile Platform for which Jobs are seeded', name: 'platform')
