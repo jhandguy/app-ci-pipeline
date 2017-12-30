@@ -2,8 +2,10 @@
 pipeline {
   agent any
 
+  def platforms = ['android', 'ios']
+
   parameters {
-    choice(choices: 'android\nios', description: 'Mobile Platform for which Jobs are seeded', name: 'platform')
+    choice(choices: "cross\n${platforms.join('\n')}", description: 'Mobile Platform for which Jobs are seeded', name: 'platform')
   }
 
   stages {
@@ -11,7 +13,7 @@ pipeline {
       steps {
         jobDsl targets: ['jobs/*.groovy'].join('\n'),
                sandbox: true,
-               additionalParameters: [platform: params.platform]
+               additionalParameters: [platform: params.platform, platforms: platforms]
       }
     }
   }
