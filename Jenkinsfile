@@ -8,7 +8,7 @@ pipeline {
   }
 
   stages {
-    stage('Seed Platform Shared Jobs') {
+    stage('Seed Cross Jobs') {
       steps {
         jobDsl targets: ['jobs/*.groovy'].join('\n'),
                removedJobAction: 'DELETE',
