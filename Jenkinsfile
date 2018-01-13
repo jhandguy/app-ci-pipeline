@@ -3,6 +3,10 @@ def platforms = ['android', 'ios']
 pipeline {
   agent any
 
+  triggers {
+    githubPush()
+  }
+
   parameters {
     choice(choices: "cross\n${platforms.join('\n')}", description: 'Mobile Platform for which Jobs are seeded', name: 'platform')
   }
