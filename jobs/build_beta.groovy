@@ -11,7 +11,7 @@ def generateBetaBuild(platform) {
     description("Beta build for platform ${platform}")
 
     triggers {
-      scm('* * * * *')
+      scm('H/2 * * * *')
     }
 
     definition {
