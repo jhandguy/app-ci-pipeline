@@ -10,6 +10,10 @@ def generateQABuild(platform) {
   pipelineJob("${platform}-build-qa") {
     description("QA build for platform ${platform}")
 
+    triggers {
+      githubPush()
+    }
+
     definition {
       cpsScm {
         scm {

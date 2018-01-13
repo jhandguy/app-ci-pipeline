@@ -10,6 +10,10 @@ def generateBetaBuild(platform) {
   pipelineJob("${platform}-build-beta") {
     description("Beta build for platform ${platform}")
 
+    triggers {
+      scm("H/1 * * * *")
+    }
+
     definition {
       cpsScm {
         scm {
