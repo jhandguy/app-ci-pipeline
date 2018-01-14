@@ -16,7 +16,7 @@ pipeline {
     }
     stage('Seed iOS Jobs') {
       steps {
-        dir ('android') {
+        dir ('ios') {
           git url: 'https://github.com/jhandguy/ios-ci-pipeline.git', branch: 'generic'
           sh 'cp -r pipelines ../pipelines'
         }
