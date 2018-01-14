@@ -1,18 +1,25 @@
 pipeline {
   agent any
 
-  parameters {
-    choice(choices: "cross\nandroid\nios", description: 'Mobile Platform for which Jobs are seeded', name: 'platform')
-  }
-
   stages {
-    stage('Seed Cross Jobs') {
+    stage('Seed iOS Jobs') {
       steps {
-        jobDsl targets: ['jobs/*.groovy'].join('\n'),
-               removedJobAction: 'DELETE',
-               removedViewAction: 'DELETE',
-               sandbox: true,
-               additionalParameters: [platform: params.platform]
+
+        dir ('ios') {
+          git url: 'https://github.com/jhandguy/ios-ci-pipeline.git', branch: 'generic'
+
+          jobDsl targets: ['../jobs/*.groovy'].join('\n'),
+                 sandbox: true,
+                 additionalParameters: [platform: 'ios']
+        }
+
+        dir ('android') {
+          git url: 'https://github.com/jhandguy/android-ci-pipeline.git', branch: 'generic'
+
+          jobDsl targets: ['../jobs/*.groovy'].join('\n'),
+                 sandbox: true,
+                 additionalParameters: [platform: 'android']
+        }
       }
     }
   }
