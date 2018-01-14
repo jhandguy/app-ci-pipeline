@@ -13,13 +13,9 @@ pipeline {
   agent any
 
   stages {
-    stage('Seed Android Jobs') {
+    stage('Seed Jobs') {
       steps {
         seedJobsFor('android')
-      }
-    }
-    stage('Seed iOS Jobs') {
-      steps {
         seedJobsFor('ios')
       }
     }
