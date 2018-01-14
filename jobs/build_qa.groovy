@@ -1,30 +1,13 @@
-if (platform == "cross") {
-  platforms.each {
-    generateQABuild(it)
+pipelineJob("${platform}-build-qa") {
+  description("QA build for platform ${platform}")
+
+  triggers {
+    githubPush()
   }
-} else {
-  generateQABuild(platform)
-}
 
-def generateQABuild(platform) {
-  pipelineJob("${platform}-build-qa") {
-    description("QA build for platform ${platform}")
-
-    triggers {
-      githubPush()
-    }
-
-    definition {
-      cpsScm {
-        scm {
-          git {
-            remote { url("https://github.com/jhandguy/${platform}-ci-pipeline") }
-            branches('master', '**/feature*')
-            scriptPath('pipelines/build_qa.groovy')
-            extensions { }
-          }
-        }
-      }
+  definition {
+    cps {
+      script(readFileFromWorkspace('pipelines/build_qa.groovy'))
     }
   }
 }

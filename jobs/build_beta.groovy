@@ -1,30 +1,13 @@
-if (platform == "cross") {
-  platforms.each {
-    generateBetaBuild(it)
+pipelineJob("${platform}-build-beta") {
+  description("Beta build for platform ${platform}")
+
+  triggers {
+    cron('* * * * *')
   }
-} else {
-  generateBetaBuild(platform)
-}
 
-def generateBetaBuild(platform) {
-  pipelineJob("${platform}-build-beta") {
-    description("Beta build for platform ${platform}")
-
-    triggers {
-      cron('* * * * *')
-    }
-
-    definition {
-      cpsScm {
-        scm {
-          git {
-            remote { url("https://github.com/jhandguy/${platform}-ci-pipeline") }
-            branches('master', '**/feature*')
-            scriptPath('pipelines/build_beta.groovy')
-            extensions { }
-          }
-        }
-      }
+  definition {
+    cps {
+      script(readFileFromWorkspace('pipelines/build_beta.groovy'))
     }
   }
 }
