@@ -6,7 +6,7 @@ pipeline {
       steps {
         dir ('android') {
           git url: 'https://github.com/jhandguy/android-ci-pipeline.git', branch: 'generic'
-          sh 'cp pipelines ../pipelines'
+          sh 'cp -r pipelines ../pipelines'
         }
 
         jobDsl targets: ['jobs/*.groovy'].join('\n'),
