@@ -9,14 +9,41 @@ def seedJobsFor(platform) {
          additionalParameters: [platform: "${platform}"]
 }
 
+def buildJobsFor(platform) {
+  build job: "${platform}-build-qa"
+  build job: "${platform}-build-beta"
+}
+
 pipeline {
   agent any
 
   stages {
     stage('Seed Jobs') {
-      steps {
-        seedJobsFor('android')
-        seedJobsFor('ios')
+      parallel {
+        stage('Seed Android Jobs') {
+          steps {
+            seedJobsFor('android')
+          }
+        }
+        stage('See iOS Jobs') {
+          steps {
+            seedJobsFor('ios')
+          }
+        }
+      }
+    }
+    stage('Build Jobs') {
+      parallel {
+        stage('Build Android Jobs') {
+          steps {
+            buildJobsFor('android')
+          }
+        }
+        stage('Build iOS Jobs') {
+          steps {
+            buildJobsFor('ios')
+          }
+        }
       }
     }
   }
