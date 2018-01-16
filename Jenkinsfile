@@ -25,7 +25,7 @@ pipeline {
             seedJobsFor('android')
           }
         }
-        stage('See iOS Jobs') {
+        stage('Seed iOS Jobs') {
           steps {
             seedJobsFor('ios')
           }
